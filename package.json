@@ -1,0 +1,19 @@
+{
+  "name": "angularSummer",
+  "version": "0.0.1",
+  "description": "angularSummer\r =============",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://alejandroSuch@github.com/alejandroSuch/angularSummer.git"
+  },
+  "author": "Alejandro Such Berenguer",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/alejandroSuch/angularSummer/issues"
+  },
+  "homepage": "https://github.com/alejandroSuch/angularSummer"
+}
