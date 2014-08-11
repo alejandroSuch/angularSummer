@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="asvook">
 <head lang="en">
     <meta charset="UTF-8">
     <title></title>
@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="facebook.css"/>
     <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css"/>
     <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/jquery-timeago/jquery.timeago.js"></script>
+    <script src="bower_components/jquery-timeago/locales/jquery.timeago.es.js"></script>
     <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
 </head>
 <body>
@@ -14,65 +16,37 @@
     <!-- main right col -->
     <div class="column col-sm-12 col-xs-12" id="main">
         <!-- top nav -->
-        <div class="navbar navbar-blue navbar-static-top" role="navigation">
+        <!--<div class="navbar navbar-blue navbar-static-top" role="navigation">
             <div class="navbar-header">
                 <span href="/" class="navbar-brand logo">ASVook</span>
             </div>
-        </div>
+        </div>-->
+
+        <ng-include src="'components/partials/header.html'"></ng-include>
         <!-- /top nav -->
         <div class="padding">
             <div class="full col-xs-12">
                 <!-- content -->
-                <div class="row">
-                    <!-- main col left -->
-                    <div class="full col-lg-8 col-md-offset-2">
-                        <div class="panel panel-default">
-                            <div class="panel-heading"><a href="#" class="pull-right">5 mintues ago</a><h4>Pepito
-                                pérez</h4></div>
-                            <div class="panel-body">
-                                <p>If you're looking for help with Bootstrap code, the <code>twitter-bootstrap</code>
-                                    tag at <a
-                                            href="http://stackoverflow.com/questions/tagged/twitter-bootstrap">Stackoverflow</a>
-                                    is
-                                    a good place to find answers.</p>
-                                <hr>
-                                <form>
-                                    <div class="input-group">
-                                        <div class="input-group-btn">
-                                            <button class="btn btn-default"><i class="fa fa-thumbs-o-up"></i> like
-                                            </button>
-                                            <button class="btn btn-default"><i class="fa fa-comment-o"> comment</i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </form>
+                <div ng-view></div>
 
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!--/row-->
-                <div class="row" id="footer">
-                    <div class="col-sm-6">
-
-                    </div>
-                    <div class="col-sm-6">
-                        <p>
-                            <a href="#" class="pull-right">©Copyright 2014</a>
-                        </p>
-                    </div>
-                </div>
-                <hr>
-                <h4 class="text-center">
-                    AngularJS Summer Project
-                </h4>
-                <hr>
+                <ng-include src="'components/partials/footer.html'"></ng-include>
             </div>
             <!-- /col-9 -->
         </div>
         <!-- /padding -->
     </div>
     <!-- /main -->
+
 </div>
+
+<script src="bower_components/angular/angular.min.js"></script>
+<script src="bower_components/angular-route/angular-route.min.js"></script>
+<script src="app.js"></script>
+<script src="app.constants.js"></script>
+<script src="app.config.js"></script>
+<script src="components/filters/timeago/TimeAgo.js"></script>
+<script src="components/directives/message/directive/Message.js"></script>
+<script src="wall/services/WallServices.js"></script>
+<script src="wall/controllers/WallCtrl.js"></script>
 </body>
 </html>
