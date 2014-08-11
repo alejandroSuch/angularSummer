@@ -1,0 +1,26 @@
+<div class="row">
+    <!-- main col left -->
+    <div class="full col-lg-8 col-md-offset-2">
+        <div class="panel panel-default">
+            <div class="panel-heading"><a href="#" class="pull-right">{{ message.date | timeAgo }}</a><h4>{{ message.author.name
+                }}</h4></div>
+            <div class="panel-body">
+                <p>{{message.message}}</p>
+                <hr>
+                <form>
+                    <div class="input-group">
+                        <div class="input-group-btn">
+                            <button class="btn btn-default"><i class="fa fa-thumbs-o-up"></i> like
+                                ({{message.counters.likesCount}})
+                            </button>
+                            <button class="btn btn-default"><i class="fa fa-comment-o"> comment
+                                ({{message.counters.commentsCount}})</i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
