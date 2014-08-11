@@ -6,20 +6,21 @@
                 }}</h4></div>
             <div class="panel-body">
                 <p>{{message.message}}</p>
-                <hr>
-                <form>
-                    <div class="input-group">
-                        <div class="input-group-btn">
-                            <button class="btn btn-default"><i class="fa fa-thumbs-o-up"></i> like
-                                ({{message.counters.likesCount}})
-                            </button>
-                            <button class="btn btn-default"><i class="fa fa-comment-o"> comment
-                                ({{message.counters.commentsCount}})</i>
-                            </button>
+                <div ng-if="!isComment">
+                    <hr>
+                    <form>
+                        <div class="input-group">
+                            <div class="input-group-btn">
+                                <button class="btn btn-default" ng-click="like()"><i class="fa" ng-class="{'fa-thumbs-up':alreadyLikes, 'fa-thumbs-o-up':!alreadyLikes}"></i> like
+                                    ({{message.counters.likesCount}})
+                                </button>
+                                <button class="btn btn-default" ng-click="comment()"><i class="fa fa-comment-o"> comment
+                                    ({{message.counters.commentsCount}})</i>
+                                </button>
+                            </div>
                         </div>
-                    </div>
-                </form>
-
+                    </form>
+                </div>
             </div>
         </div>
     </div>
