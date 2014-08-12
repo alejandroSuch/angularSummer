@@ -1,6 +1,6 @@
 angular
     .module('asvook')
-    .factory('WallServices', function ($http, servicesUrl) {
+    .factory('WallServices', function ($http, servicesUrl, Session) {
         var instance = {
             getWall: function () {
                 return $http
@@ -30,7 +30,7 @@ angular
                     });
             },
 
-            getMessageWithComments : function(id) {
+            getMessageWithComments: function (id) {
                 return $http
                     .get(servicesUrl + 'comments/' + id)
                     .then(function (response) {
@@ -42,6 +42,33 @@ angular
                     .finally(function () {
 
                     });
+            },
+
+            sendPost: function (post) {
+                Session.setUserName(post.author);
+
+                return $http
+                    .post(servicesUrl + 'wall', post)
+                    .then(function (response) {
+                        return response.data;
+                    })
+                    .catch(function () {
+                        console.log('error!!', arguments);
+                    })
+                    .finally(function () {
+
+                    });
+            },
+
+            sendComment: function (post) {
+                Session.setUserName(post.author);
+            },
+
+            createPost: function () {
+                return {
+                    author: Session.getUserName(),
+                    text: null
+                };
             }
         };
 
