@@ -10,7 +10,7 @@
                 </div>
 
                 <div class="form-group text-center" ng-class="{'has-warning' : msgForm.text.$invalid && msgForm.text.$pristine, 'has-error' : msgForm.text.$invalid && msgForm.text.$dirty }">
-                    <textarea type="text" class="form-control input-lg" placeholder="Tu comentario" ng-model="post.text" name="text" required ng-pattern="/^\w+\s(\w+\s?)+\.$/"></textarea>
+                    <textarea type="text" class="form-control input-lg" placeholder="Tu comentario" ng-model="post.text" name="text" required ng-pattern="/^\w+(\s\w+)+\.$/"></textarea>
                 </div>
 
                 <button type="submit" class="btn btn-primary btn-lg btn-block" ng-disabled="msgForm.$invalid">Enviar</button>
