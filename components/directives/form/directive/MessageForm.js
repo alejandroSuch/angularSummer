@@ -10,7 +10,7 @@ angular
             },
             templateUrl : 'components/directives/form/template/message-form.html',
             compile : function(element, attrs) {
-                if(attrs.isComment) {
+                if(attrs.isComment === "true") {
                     $('h4', element).text('Añadir comentario');
                 } else {
                     $('h4', element).text('Nuevo mensaje');
