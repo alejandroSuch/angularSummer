@@ -1,3 +1,4 @@
 <div>
-    <message ng-repeat="message in messages" ng-model="message"></message>
+    <message-form ng-model="newMessage" is-comment="false" on-message-submitted="sendMessage()"></message-form>
+    <message ng-repeat="message in messages track by message.id" ng-model="message"></message>
 </div>

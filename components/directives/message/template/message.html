@@ -1,6 +1,6 @@
 <div class="row">
     <!-- main col left -->
-    <div class="full col-lg-8 col-md-offset-2">
+    <div class="col-lg-8 col-md-offset-2">
         <div class="panel panel-default">
             <div class="panel-heading"><a href="#" class="pull-right">{{ message.date | timeAgo }}</a><h4>{{ message.author.name
                 }}</h4></div>
@@ -12,10 +12,10 @@
                         <div class="input-group">
                             <div class="input-group-btn">
                                 <button class="btn btn-default" ng-click="like()"><i class="fa" ng-class="{'fa-thumbs-up':alreadyLikes, 'fa-thumbs-o-up':!alreadyLikes}"></i> like
-                                    ({{message.counters.likesCount}})
+                                    ({{message.counters.likesCount || 0 }})
                                 </button>
                                 <button class="btn btn-default" ng-click="comment()"><i class="fa fa-comment-o"> comment
-                                    ({{message.counters.commentsCount}})</i>
+                                    ({{message.counters.commentsCount || 0 }})</i>
                                 </button>
                             </div>
                         </div>

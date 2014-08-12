@@ -16,20 +16,17 @@
     <!-- main right col -->
     <div class="column col-sm-12 col-xs-12" id="main">
         <!-- top nav -->
-        <!--<div class="navbar navbar-blue navbar-static-top" role="navigation">
-            <div class="navbar-header">
-                <span href="/" class="navbar-brand logo">ASVook</span>
-            </div>
-        </div>-->
-
         <ng-include src="'components/partials/header.html'"></ng-include>
         <!-- /top nav -->
         <div class="padding">
             <div class="full col-xs-12">
                 <!-- content -->
                 <div ng-view></div>
+                <!-- /content -->
 
+                <!-- footer -->
                 <ng-include src="'components/partials/footer.html'"></ng-include>
+                <!-- /footer -->
             </div>
             <!-- /col-9 -->
         </div>
@@ -45,8 +42,10 @@
 <script src="app.constants.js"></script>
 <script src="app.config.js"></script>
 <script src="components/filters/timeago/TimeAgo.js"></script>
+<script src="components/directives/form/directive/MessageForm.js"></script>
 <script src="components/directives/message/directive/Message.js"></script>
-<script src="wall/services/WallServices.js"></script>
+<script src="components/services/Session.js"></script>
+<script src="components/services/WallServices.js"></script>
 <script src="wall/controllers/WallCtrl.js"></script>
 <script src="comments/controllers/CommentsCtrl.js"></script>
 </body>
