@@ -1,0 +1,20 @@
+<div class="row">
+    <!-- main col left -->
+    <div class="col-lg-8 col-md-offset-2">
+        <div class="well">
+            <form class="form" ng-submit="submitAction()" name="msgForm">
+                <h4></h4>
+
+                <div class="form-group text-center" ng-class="{'has-warning' : msgForm.author.$invalid && msgForm.author.$pristine, 'has-error' : msgForm.author.$invalid && msgForm.author.$dirty }">
+                    <input type="text" class="form-control input-lg" placeholder="Tu nombre" ng-model="post.author" name="author" required />
+                </div>
+
+                <div class="form-group text-center" ng-class="{'has-warning' : msgForm.text.$invalid && msgForm.text.$pristine, 'has-error' : msgForm.text.$invalid && msgForm.text.$dirty }">
+                    <textarea type="text" class="form-control input-lg" placeholder="Tu comentario" ng-model="post.text" name="text" required ng-pattern="/^\w+\s(\w+\s?)+\.$/"></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-lg btn-block" ng-disabled="msgForm.$invalid">Enviar</button>
+            </form>
+        </div>
+    </div>
+</div>

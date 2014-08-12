@@ -1,0 +1,20 @@
+angular
+    .module('asvook')
+    .directive('messageForm', function(){
+        return {
+            restrict : 'E',
+            require: 'ngModel',
+            scope : {
+                submitAction : '&onMessageSubmitted',
+                post : '=ngModel'
+            },
+            templateUrl : 'components/directives/form/template/message-form.html',
+            compile : function(element, attrs) {
+                if(attrs.isComment) {
+                    $('h4', element).text('Añadir comentario');
+                } else {
+                    $('h4', element).text('Nuevo mensaje');
+                }
+            }
+        }
+    });
