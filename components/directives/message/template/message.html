@@ -2,8 +2,7 @@
     <!-- main col left -->
     <div class="col-lg-8 col-md-offset-2">
         <div class="panel panel-default">
-            <div class="panel-heading"><a href="#" class="pull-right">{{ message.date | timeAgo }}</a><h4>{{ message.author.name
-                }}</h4></div>
+            <div class="panel-heading"><a class="pull-right">{{ message.date | timeAgo }}</a><h4><a ng-href="#/user/{{message.author.name}}">{{ message.author.name }}</a></h4></div>
             <div class="panel-body">
                 <p>{{message.message}}</p>
                 <div ng-if="!isComment">

@@ -1,2 +1,2 @@
 angular
-    .module('asvook', ['ngRoute']);
+    .module('asvook', ['ngRoute', 'ngResource']);

@@ -1,4 +1,5 @@
 <div>
-    <message-form ng-model="newMessage" is-comment="false" on-message-submitted="sendMessage()"></message-form>
+    <h1 ng-if="userName" class="well text-center">Muro de {{userName}}</h1>
+    <message-form ng-model="newMessage" is-comment="false" on-message-submitted="sendMessage()" ng-if="showForm"></message-form>
     <message ng-repeat="message in messages track by message.id" ng-model="message"></message>
 </div>

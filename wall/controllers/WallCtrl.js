@@ -1,11 +1,18 @@
 angular
     .module('asvook')
-    .controller('WallCtrl', function ($scope, WallServices) {
+    .controller('WallCtrl', function ($scope, $routeParams, WallServices) {
+        $scope.showForm = true;
+
+        if(!!$routeParams.userName) {
+            $scope.showForm = false;
+            $scope.userName = $routeParams.userName;
+        }
+
         var createNewMessage = function () {
             $scope.newMessage = WallServices.createPost();
         };
 
-        WallServices.getWall().then(function (messages) {
+        WallServices.getWall($routeParams.userName).then(function (messages) {
             $scope.messages = messages;
         });
 

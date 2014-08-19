@@ -1,10 +1,10 @@
 angular
     .module('asvook')
-    .factory('WallServices', function ($http, servicesUrl, Session) {
+    .factory('WallServices', function ($http, servicesUrl, Session, $resource, $q) {
         var instance = {
-            getWall: function () {
+            getWall: function (userName) {
                 return $http
-                    .get(servicesUrl + 'wall')
+                    .get(servicesUrl + (!!userName? 'user/' + userName : 'wall'))
                     .then(function (response) {
                         return response.data;
                     })
@@ -60,8 +60,20 @@ angular
                     });
             },
 
-            sendComment: function (post) {
-                Session.setUserName(post.author);
+            sendComment: function (comment) {
+                Session.setUserName(comment.author);
+
+                return $http
+                    .post(servicesUrl + 'comments/' + comment.status, comment)
+                    .then(function (response) {
+                        return response.data;
+                    })
+                    .catch(function () {
+                        console.log('error!!', arguments);
+                    })
+                    .finally(function () {
+
+                    });
             },
 
             createPost: function () {
@@ -69,6 +81,14 @@ angular
                     author: Session.getUserName(),
                     text: null
                 };
+            },
+
+            createComment: function(post) {
+                return {
+                    author: Session.getUserName(),
+                    text: null,
+                    status: post.id
+                }
             }
         };
 
