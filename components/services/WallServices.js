@@ -2,9 +2,9 @@ angular
     .module('asvook')
     .factory('WallServices', function ($http, servicesUrl, Session, $resource, $q) {
         var instance = {
-            getWall: function (userName) {
+            getWall: function (page, userName) {
                 return $http
-                    .get(servicesUrl + (!!userName? 'user/' + userName : 'wall'))
+                    .get(servicesUrl + (!!userName? 'user/' + userName : 'wall') + '/' + (page || 1))
                     .then(function (response) {
                         return response.data;
                     })
