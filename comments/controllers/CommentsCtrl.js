@@ -13,6 +13,10 @@ angular
         }
 
         $scope.sendComment = function(){
+            if($scope.sendingMessage) {
+                return;
+            }
+
             $scope.createMessageError = false;
             $scope.sendingMessage = true;
             WallServices

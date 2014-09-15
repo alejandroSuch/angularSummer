@@ -3,8 +3,6 @@
     <div class="col-lg-8 col-md-offset-2">
         <div class="well">
             <form class="form" ng-submit="submitAction()" name="msgForm">
-                <h4></h4>
-
                 <div class="form-group text-center" ng-class="{'has-warning' : msgForm.author.$invalid && msgForm.author.$pristine, 'has-error' : msgForm.author.$invalid && msgForm.author.$dirty }">
                     <input type="text" class="form-control input-lg" placeholder="Tu nombre" ng-model="post.author" name="author" required />
                 </div>
@@ -17,7 +15,7 @@
                     Se ha producido un error al enviar el comentario. Inténtalo de nuevo más adelante
                 </div>
 
-                <button type="submit" class="btn btn-primary btn-lg btn-block" ng-disabled="msgForm.$invalid"><i class="fa fa-circle-o-notch fa-spin" ng-show="isLoading"></i> Enviar</button>
+                <button type="submit" class="btn btn-primary btn-lg btn-block" ng-disabled="msgForm.$invalid && !isLoading"><i class="fa fa-circle-o-notch fa-spin" ng-show="isLoading"></i> Enviar</button>
             </form>
         </div>
     </div>
