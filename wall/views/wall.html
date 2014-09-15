@@ -1,7 +1,19 @@
 <div>
-    <h1 ng-if="userName" class="well text-center">Muro de {{userName}}</h1>
-    <message-form ng-model="newMessage" is-comment="false" on-message-submitted="sendMessage()" ng-if="showForm"></message-form>
-    <spinner ng-show="loading"></spinner>
+    <div class="well">
+        <h2 class="text-center">{{userName ? 'Muro de ' + userName : 'Muro general'}}</h2>
+        <div ng-if="!userName">
+            Ordenar por
+            <label><input type="radio" ng-model="wallSort.value" value="date" /> fecha</label>
+            <label><input type="radio" ng-model="wallSort.value" value="relevance" /> relevancia</label>
+        </div>
+    </div>
+
+
+    <message-form ng-model="newMessage" is-comment="false" on-message-submitted="sendMessage()" ng-if="showForm" has-error="createMessageError" is-loading="sendingMessage"></message-form>
+    <spinner ng-show="loading && !getWallError"></spinner>
+    <div ng-show="getWallError" class="alert alert-danger">
+        Se ha producido un error al obtener la información del muro. <a ng-click="reload()">Haz click aquí</a> para reintentar.
+    </div>
     <message ng-repeat="message in messages track by message.id" ng-model="message"></message>
 
     <paginator page-count="pageCount" current-page="currentPage" prev="prev()" next="next()" on-page-click="onPageClick($page)"></paginator>

@@ -3,6 +3,8 @@ angular
     .controller('WallCtrl', function ($scope, $routeParams, WallServices) {
         $scope.showForm = true;
         $scope.currentPage = 1;
+        $scope.wallSort = { value : 'date'};
+        $scope.getWallError = false;
 
         if (!!$routeParams.userName) {
             $scope.showForm = false;
@@ -14,13 +16,22 @@ angular
         };
 
         var getWall = function () {
+            console.log('getting wall');
+            $scope.getWallError = false;
             $scope.messages = [];
             $scope.loading = true;
             WallServices
-                .getWall($scope.currentPage, $routeParams.userName)
+                .getWall($scope.currentPage, $routeParams.userName, $scope.wallSort.value)
                 .then(function (result) {
-                    $scope.messages = result.statusUpdates;
-                    $scope.pageCount = result.pageCount;
+                    if(!!result) {
+                        $scope.messages = result.statusUpdates;
+                        $scope.pageCount = result.pageCount;
+                        $scope.getWallError = false;
+                    }
+                })
+                .catch(function(){
+                    console.log('habemus error')
+                    $scope.getWallError = true;
                 })
                 .finally(function(){
                     $scope.loading = false;
@@ -28,11 +39,19 @@ angular
         };
 
         $scope.sendMessage = function () {
+            $scope.createMessageError = false;
+            $scope.sendingMessage = true;
             WallServices
                 .sendPost($scope.newMessage)
                 .then(function (message) {
                     $scope.messages.unshift(message);
                     createNewMessage();
+                })
+                .catch(function(){
+                    $scope.createMessageError = true;
+                })
+                .finally(function(){
+                    $scope.sendingMessage = false;
                 });
         };
 
@@ -57,6 +76,19 @@ angular
             }
         };
 
+        $scope.reload = function(){
+            getWall();
+        };
+
         createNewMessage();
         getWall();
+
+        if(!$routeParams.userName) {
+            $scope.$watch('wallSort.value', function(oldVal, newVal){
+                if(oldVal !== newVal && !!oldVal) {
+                    $scope.currentPage = 1;
+                    getWall();
+                }
+            });
+        }
     });

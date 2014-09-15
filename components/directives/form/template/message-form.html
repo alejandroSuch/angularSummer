@@ -13,7 +13,11 @@
                     <textarea type="text" class="form-control input-lg" placeholder="Tu comentario" ng-model="post.text" name="text" required ng-pattern="/^\w+(\s\w+)+\.$/"></textarea>
                 </div>
 
-                <button type="submit" class="btn btn-primary btn-lg btn-block" ng-disabled="msgForm.$invalid">Enviar</button>
+                <div ng-show="hasError" class="alert alert-danger">
+                    Se ha producido un error al enviar el comentario. Inténtalo de nuevo más adelante
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-lg btn-block" ng-disabled="msgForm.$invalid"><i class="fa fa-circle-o-notch fa-spin" ng-show="isLoading"></i> Enviar</button>
             </form>
         </div>
     </div>

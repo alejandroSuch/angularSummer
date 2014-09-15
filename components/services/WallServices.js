@@ -2,17 +2,11 @@ angular
     .module('asvook')
     .factory('WallServices', function ($http, servicesUrl, Session, $resource, $q) {
         var instance = {
-            getWall: function (page, userName) {
+            getWall: function (page, userName, sort) {
                 return $http
-                    .get(servicesUrl + (!!userName? 'user/' + userName : 'wall') + '/' + (page || 1))
+                    .get(servicesUrl + (!!userName ? 'user/' + userName : ('wall' + (sort === 'relevance' ? '/by-relevance' : ''))) + '/' + (page || 1))
                     .then(function (response) {
                         return response.data;
-                    })
-                    .catch(function () {
-                        console.log('error!!', arguments);
-                    })
-                    .finally(function () {
-
                     });
             },
 
@@ -21,26 +15,16 @@ angular
                     .post(servicesUrl + 'likes', { status: message.id, increment: increment})
                     .then(function (response) {
                         return response.data;
-                    })
-                    .catch(function () {
-                        console.log('error!!', arguments);
-                    })
-                    .finally(function () {
-
                     });
             },
 
             getMessageWithComments: function (id) {
+                cancelPreviousRequest();
+
                 return $http
                     .get(servicesUrl + 'comments/' + id)
                     .then(function (response) {
                         return response.data;
-                    })
-                    .catch(function () {
-                        console.log('error!!', arguments);
-                    })
-                    .finally(function () {
-
                     });
             },
 
@@ -51,12 +35,6 @@ angular
                     .post(servicesUrl + 'wall', post)
                     .then(function (response) {
                         return response.data;
-                    })
-                    .catch(function () {
-                        console.log('error!!', arguments);
-                    })
-                    .finally(function () {
-
                     });
             },
 
@@ -67,12 +45,6 @@ angular
                     .post(servicesUrl + 'comments/' + comment.status, comment)
                     .then(function (response) {
                         return response.data;
-                    })
-                    .catch(function () {
-                        console.log('error!!', arguments);
-                    })
-                    .finally(function () {
-
                     });
             },
 
@@ -83,7 +55,7 @@ angular
                 };
             },
 
-            createComment: function(post) {
+            createComment: function (post) {
                 return {
                     author: Session.getUserName(),
                     text: null,

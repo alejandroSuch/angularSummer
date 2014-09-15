@@ -6,7 +6,9 @@ angular
             require: 'ngModel',
             scope : {
                 submitAction : '&onMessageSubmitted',
-                post : '=ngModel'
+                post : '=ngModel',
+                hasError: '=',
+                isLoading: '='
             },
             templateUrl : 'components/directives/form/template/message-form.html',
             compile : function(element, attrs) {

@@ -1,5 +1,5 @@
 <div>
     <message ng-model="message" is-comment="false"></message>
-    <message-form ng-model="newComment" is-comment="true" on-message-submitted="sendComment()"></message-form>
+    <message-form ng-model="newComment" is-comment="true" on-message-submitted="sendComment()" has-error="createMessageError" is-loading="sendingMessage"></message-form>
     <message ng-repeat="comment in message.comments track by comment.id" ng-model="comment" is-comment="true"></message>
 </div>

@@ -13,12 +13,20 @@ angular
         }
 
         $scope.sendComment = function(){
+            $scope.createMessageError = false;
+            $scope.sendingMessage = true;
             WallServices
                 .sendComment($scope.newComment)
                 .then(function (comment) {
                     $scope.message.comments.unshift(comment);
                     $scope.message.counters.commentsCount++;
                     createNewComment();
+                })
+                .catch(function(){
+                    $scope.createMessageError = true;
+                })
+                .finally(function(){
+                    $scope.sendingMessage = false;
                 });
         };
 
